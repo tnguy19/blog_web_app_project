@@ -1,49 +1,46 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Thinh's Blog</title>
+		<title>Personal Blog Web App</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../public/styles/main.css" />
+		<link rel="stylesheet" href="styles/main.css" />
 	</head>
-	<body class="is-preload">
-
-		<form action="/submit" method="POST">
+	<body>
+		<h1>Personal Blog Website!</h1>
+		  <form action="/submit" method="POST">
+			<label for="postTitle">Post Title</label><br>
+			<input type="text" id="postTitle" name="postTitle"><br>
+			<label for="subTitle">Sub title</label><br>
+			<input type="text" id="subTitle" name="subTitle"><br>
+			<label for="postContent">Post Content:</label><br>
+			<textarea cols="40" rows="5" name="postContent" wrap=physical></textarea><br>
 			<input type="submit" value="Create Post">
 		  </form>
 
-		<!-- Content -->
+		  <h2>Recent Posts</h2>
 			<div id="content">
-				<div class="inner">
-					<!-- Post -->
-
-						<article class="box post post-excerpt">
+				<% if (locals.posts) { %>
+					 <% posts.forEach ((post) => { %>
+						<article class="article">
 							<header>
-								<h2>Article# 1title</h2>
-								<p>subtitle</p>
+								<h2><%= post.postTitle %></h2>
+								<p><%= post.subTitle %></p>
 							</header>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique gravida lectus vitae tempor. Curabitur non euismod augue. Aliquam id nulla bibendum, porttitor mauris nec, sollicitudin libero. Suspendisse potenti. Cras pretium mi at ligula ornare varius. Maecenas molestie ante mauris, sed convallis lectus tincidunt et. Praesent pharetra odio quis justo imperdiet dignissim. Maecenas vel enim mauris. Aliquam erat volutpat. Ut pulvinar, urna eget rhoncus posuere, lacus dolor vestibulum nisl, id efficitur purus turpis eget ligula. Phasellus feugiat ipsum mi, vestibulum ullamcorper magna dapibus vel. Donec at odio sit amet metus commodo ultricies. In convallis nulla sed fermentum mollis. Duis interdum id dui sit amet lacinia. Aenean fermentum nisi vehicula, finibus dui a, viverra elit. Praesent tincidunt urna quis sollicitudin vestibulum.
+								<%= post.postContent %>
 							</p>
-							<form class="button" action="/submit" method="POST">
+							<form class="button" action="/edit/<%= post.id %>" method="GET">
 								<input type="submit" value="Edit Post">
-							  </form>
-							  <form class="button" action="/submit" method="POST">
+							</form>
+							<form class="button" action="/delete/<%= post.id %>" method="POST">
 								<input type="submit" value="Delete Post">
-							  </form>
+							</form>
 						</article>
-
-						<article class="box post post-excerpt">
-							<header>
-								<h2>Article # 2 title</h2>
-								<p>subtitle</p>
-							</header>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tristique gravida lectus vitae tempor. Curabitur non euismod augue. Aliquam id nulla bibendum, porttitor mauris nec, sollicitudin libero. Suspendisse potenti. Cras pretium mi at ligula ornare varius. Maecenas molestie ante mauris, sed convallis lectus tincidunt et. Praesent pharetra odio quis justo imperdiet dignissim. Maecenas vel enim mauris. Aliquam erat volutpat. Ut pulvinar, urna eget rhoncus posuere, lacus dolor vestibulum nisl, id efficitur purus turpis eget ligula. Phasellus feugiat ipsum mi, vestibulum ullamcorper magna dapibus vel. Donec at odio sit amet metus commodo ultricies. In convallis nulla sed fermentum mollis. Duis interdum id dui sit amet lacinia. Aenean fermentum nisi vehicula, finibus dui a, viverra elit. Praesent tincidunt urna quis sollicitudin vestibulum.
-							</p>
-						</article>
-
-				</div>
+					<% }) %>
+				<% } else {%>
+					<p>No post yet!</p>
+				<% } %>
 			</div>
 
 
