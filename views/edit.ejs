@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Blog Web App</title>
+</head>
+<body>
+    <h2>Edit Post</h2>
+    <form class="button" action="/edit/<%= post.id %>" method="POST">
+        <!-- Assuming `postContent` is the field you want to edit -->
+        <textarea cols="40" rows="5" name="postContent" wrap="physical"><%= post.postContent %></textarea><br>
+        <!-- Make sure to include the post ID in a hidden field if needed -->
+        <!-- <input type="hidden" name="postId" value="<%= post.id %>"> -->
+        <input type="submit" value="Confirm Changes">
+    </form>
+</body>
+</html>

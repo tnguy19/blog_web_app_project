@@ -19,29 +19,29 @@
 		  </form>
 
 		  <h2>Recent Posts</h2>
-			<div id="content">
-				<% if (locals.posts) { %>
-					 <% posts.forEach ((post) => { %>
-						<article class="article">
-							<header>
-								<h2><%= post.postTitle %></h2>
-								<p><%= post.subTitle %></p>
-							</header>
-							<p>
-								<%= post.postContent %>
-							</p>
-							<form class="button" action="/edit/<%= post.id %>" method="GET">
-								<input type="submit" value="Edit Post">
-							</form>
-							<form class="button" action="/delete/<%= post.id %>" method="POST">
-								<input type="submit" value="Delete Post">
-							</form>
-						</article>
-					<% }) %>
-				<% } else {%>
-					<p>No post yet!</p>
-				<% } %>
-			</div>
+		  <div id="content">
+			<% if (posts.length !== 0) { %>
+				<% posts.forEach((post) => { %>
+					<article class="article" id="<%= post.id %>">
+						<header>
+							<h2><%= post.postTitle %></h2>
+							<p><%= post.subTitle %></p>
+						</header>
+						<p>
+							<%= post.postContent %>
+						</p>
+						<form class="button" action="/edit/<%= post.id %>" method="GET">
+							<button>Edit Post</button>
+						</form>
+						<form class="button" action="/delete/<%= post.id %>" method="POST">
+							<button>Delete Post</button>
+						</form>
+					</article>
+				<% }) %>
+			<% } else { %>
+				<p>No posts yet!</p>
+			<% } %>
+		</div>
 
 
 	</body>
