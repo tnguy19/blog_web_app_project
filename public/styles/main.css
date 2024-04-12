@@ -3,5 +3,6 @@ article{
 	margin-bottom: 10px
 }
 .button{
-	display: inline;
+	color: red;
+	display: inline-block;
 }

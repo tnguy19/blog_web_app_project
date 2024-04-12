@@ -52,6 +52,18 @@ app.post("/edit/:id", (req, res) => {
   }
 });
 
+app.post("/delete/:id", (req, res) => {
+  const postId = req.params.id;
+  const updatedPost = req.body;
+  const postIndex = posts.findIndex(post => post.id === postId);
+  if (postIndex !== -1) {
+      posts.splice(postIndex, 1);
+      res.redirect("/");
+  } else {
+    res.send("Post not found");
+  }
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
   //console.log(posts);
