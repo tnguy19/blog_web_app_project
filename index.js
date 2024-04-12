@@ -45,7 +45,9 @@ app.post("/edit/:id", (req, res) => {
   const updatedPost = req.body;
   const postIndex = posts.findIndex(post => post.id === postId);
   if (postIndex !== -1) {
-      posts[postIndex] = updatedPost;
+    posts[postIndex].postTitle = updatedPost.postTitle;
+    posts[postIndex].subTitle = updatedPost.subTitle;
+    posts[postIndex].postContent = updatedPost.postContent;
       res.redirect("/");
   } else {
     res.send("Post not found");
@@ -54,11 +56,11 @@ app.post("/edit/:id", (req, res) => {
 
 app.post("/delete/:id", (req, res) => {
   const postId = req.params.id;
-  const updatedPost = req.body;
   const postIndex = posts.findIndex(post => post.id === postId);
   if (postIndex !== -1) {
-      posts.splice(postIndex, 1);
-      res.redirect("/");
+    posts.splice(postIndex, 1);
+    res.redirect("/");
+    res.redirect("/");
   } else {
     res.send("Post not found");
   }
