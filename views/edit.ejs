@@ -8,6 +8,7 @@
 <body>
     <h2>Edit Post</h2>
     <form class="button" action="/edit/<%= post.id %>" method="POST">
+<<<<<<< HEAD
         <label for="postTitle">Post Title</label><br>
         <textarea cols="40" rows="1" name="postTitle" wrap="physical"><%= post.postTitle %></textarea><br>
         <label for="subTitle">Sub title</label><br>
@@ -15,6 +16,9 @@
         <label for="postContent">Post Content:</label><br>
         <textarea cols="40" rows="5" name="postContent" wrap="physical"><%= post.postContent %></textarea><br>
         <% post.id %> 
+=======
+        <textarea cols="40" rows="5" name="postContent" wrap="physical"><%= post.postContent %></textarea><br>
+>>>>>>> 28c06a4c027b6ea47004b1276142c328c804a5fd
         <input type="submit" value="Confirm Changes">
     </form>
 </body>
