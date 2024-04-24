@@ -17,14 +17,19 @@ app.get("/", (req, res) => {
 });
 
 app.post("/submit", (req, res) => {
-  //console.log(req.body);
+  console.log(req.body);
+  const date = new Date();
   if (req.body.postTitle && req.body.subTitle && req.body.postContent) {
       const newPost = {
+          day: date.getDate(),
+          month: date.getMonth()+1,
+          year: date.getFullYear(),
           id: Date.now().toString(), 
           postTitle: req.body.postTitle,
           subTitle: req.body.subTitle,
           postContent: req.body.postContent
       };
+      console.log(newPost);
       posts.push(newPost);
   }
   res.redirect("/");

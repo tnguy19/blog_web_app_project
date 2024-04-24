@@ -65,7 +65,7 @@
 
 	<section class="input-form">
 		<div class="container">
-			<form name="frmContact" id="frmContact" method="post" action="" enctype="multipart/form-data" novalidate="">
+			<form name="frmContact" id="frmContact" method="post" action="/submit">
 				<div class="row py-2">
 					<div class="form-group col-md-8">
 
@@ -112,7 +112,7 @@
 				
 				<div class="row py-2">
 					<div class="col">
-						<input type="button" name="send" id="send" class="btn btn-primary" value="Send Message">
+						<input type="submit" class="btn btn-primary" value="Create Post">
 					</div>
 				</div>
 			</form>
@@ -124,22 +124,30 @@
 
 	<section class="posts">
 		<div class="container">
-		<div class="col-md-8 blog-main">
+		<% if (posts.length !== 0) { %>
+		
 			<h3 class="pb-3 mb-4 font-italic border-bottom">
-			  Previously on this Blog...
-			</h3>
-  
-			<div class="blog-post">
-			  <h2 class="blog-post-title">Sample blog post</h2>
-  
-			  <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+				Previously on this Blog...
+			  </h3>
+			<% posts.slice().reverse().forEach((post) => { %>
+		<div class="col-md-8 blog-main mb-5">
+			<div class="blog-post" id="<%= post.id %>">
+			  <h2 class="blog-post-title py-0"><%= post.postTitle %></h2>
+			  <p class="blog-post-meta"><%= post.month %>-<%= post.day%>-<%= post.year%> </p>
+			  <p><%=post.subTitle %></p>
 			  <hr>
-			  <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+			  <p><%= post.postContent %></p>
 			</div>
   
-		  </div>
-		  </div>
 		</div>
+		<br/>
+	<% }); %> 
+	<% } else { %>
+			<h3 class="pb-3 mb-4 border-bottom">
+				No posts yet!
+			  </h3>
+		<% } %>
+	</div>
 	</section>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
